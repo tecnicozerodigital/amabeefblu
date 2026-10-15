@@ -1,0 +1,50 @@
+/* ---------------------------------------------
+    ratio
+--------------------------------------------- */
+.bxs-r {
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        padding-bottom: calc((var(--ratio-h) / var(--ratio-w)) * 100%); 
+    }
+
+    > div,
+    > .bxs-r-c,
+    > .r-c {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+// .bxs-r-1-1 {
+//     @include aspect-ratio(1, 1);
+// }
+
+// .bxs-r-1-1 {
+//     @include aspect-ratio(1, 1);
+// }
+
+// .bxs-r-2-3 {
+//     @include aspect-ratio(2, 3);
+// }
+
+// .bxs-r-4-3 {
+//     @include aspect-ratio(4, 3);
+// }
+
+// .bxs-r-16-9 {
+//     @include aspect-ratio(16, 9);
+// }
+
+// .bxs-r-21-9 {
+//     @include aspect-ratio(21, 9);
+// }
+
+// .bxs-r-reel {
+//     @include aspect-ratio(9, 16);
+// }

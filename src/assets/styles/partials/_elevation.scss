@@ -1,0 +1,20 @@
+$elevation_n: 0;
+$elevation_v: 0;
+$elevation_expand: var(--elevation-expand);
+$elevation_y: calc(var(--elevation-expand) / 4);
+
+.bxs-elevation {
+    // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    // box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.30);
+    // box-shadow: 0 calc(var(--elevation-expand) / 4) var(--elevation-expand) 0 rgba(0, 0, 0, 0.25);
+    // box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.30);
+}
+
+@while $elevation_n <= 24 {
+    .bxs-elevation-#{$elevation_n} {
+        box-shadow: 0 $elevation_y $elevation_expand 0 rgba(0, 0, 0, $elevation_v);
+    }
+
+    $elevation_n: $elevation_n + 1;
+    $elevation_v: $elevation_v + 0.083;
+}

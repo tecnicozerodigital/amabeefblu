@@ -1,0 +1,237 @@
+$label-mb: var(--input-label-margin-bottom);
+$hint-margin-top: $label-mb;
+$error-margin-top: 0.1rem;
+
+@mixin input () {
+    display: block;
+    width: 100%;
+    min-height: var(--input-min-height);
+    background: none;
+    border: none;
+    outline: none;
+    user-select: text;
+    font-family: var(--typo-family-ui);
+    font-weight: var(--input-font-weight);
+    font-size: var(--input-font-size);
+    line-height: 100%;
+
+    &:focus {
+        outline: none;
+        border: none;
+    }
+
+    &::placeholder {
+        color: var(--input-color-placeholder);
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0; // Apparently some margin are still there even though it's hidden
+    }
+}
+
+@mixin field-state($color, $color_name) {
+    @if $color_name == 'disabled' {
+        .bxs-field--content,
+        input {
+            cursor: not-allowed !important;
+        }
+    }
+
+    @if $color_name == 'outlined' {
+        .bxs-field--content {
+            background: var(--color-background);
+            border-color: $color;
+        }
+    } @else {
+        .bxs-field--label-content {
+            label {
+                color: $color;
+            }
+        }
+    
+        .bxs-field--content {
+            @if $color_name == 'error' {
+                border-color: $color;
+                // border-width: calc(var(--input-thickness) * 1.5);
+            } @else {
+                border-color: $color;
+            }
+        }
+    }
+}
+
+$states: (
+    'outlined': var(--input-color-outlined),
+    'disabled': var(--input-color-disabled),
+    'focused': var(--input-color-focused),
+    'error': var(--color-error)
+);
+
+input,
+textarea,
+.bxs-field-input {
+    @include input()
+}
+
+.bxs-field-input-textarea {
+    resize: none;
+    padding-top: var(--input-padding-x);
+    padding-bottom: var(--input-padding-x);
+    line-height: normal;
+}
+
+.bxs-field {
+    position: relative;
+    user-select: none;
+    margin-bottom: var(--input-margin-bottom);
+    text-align: left;
+    font-family: var(--typo-family-ui);
+    font-weight: var(--input-font-weight);
+    font-size: var(--input-font-size);
+    letter-spacing: normal;
+    pointer-events: none;
+    overflow: hidden;
+    font-size: var(--input-font-size-base);
+
+    * {
+        box-sizing: border-box;
+    }
+
+    &.bxs-field-hide-details {
+        margin-bottom: 0;
+    }
+
+    @each $key, $value in $states {
+        &.bxs-field-#{$key} {
+            @include field-state(
+                $value,
+                $key
+            );
+        }
+    }
+
+    &--label-content {
+        label {
+            display: block;
+            color: var(--input-color-label);
+            margin-bottom: $label-mb;
+            white-space: nowrap;
+            line-height: 100%;
+            font-size: var(--input-label-font-size);
+            padding: 0 var(--input-padding-x);
+        }
+    }
+
+    &--content {
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        line-height: 100%;
+        min-height: var(--input-min-height);
+        border: var(--input-thickness) solid transparent;
+        border-radius: var(--input-border-radius);
+        background-color: var(--input-background-color);
+        pointer-events: auto;
+
+        &--prepend-content {
+            // color: var(--color-disabled);
+            // border-right: var(--thickness) solid black;
+            padding-left: 1rem;
+        }
+
+        &--append-content {
+            // color: var(--color-disabled);
+            // border-left: var(--thickness) solid black;
+            padding-right: 1rem;
+
+            .bxs-icon {
+                color: var(--input-color);
+            }
+        }
+
+        &--input-content {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: text;
+            padding: 0 var(--input-padding-x);
+
+            // > input,
+            // .bxs-field-input {
+            // }
+        }
+    }
+
+    &--hint {
+        position: relative;
+        font-size: calc(var(--input-font-size) / 1.5);
+        line-height: 100%;
+        min-height: var(--input-hint-min-height);
+        color: var(--input-color-hint);
+        pointer-events: none;
+        margin-top: $hint-margin-top;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        padding: 0 var(--input-padding-x);
+
+        > div {
+            &:first-child {
+                flex: 1;
+                line-height: 100%;
+            }
+
+            &:last-child {
+                margin-left: 1rem;
+                text-align: right;
+            }
+        }
+    }
+
+    &--error {
+        position: relative;
+        min-height: var(--input-hint-min-height);
+        overflow: hidden;
+        margin-top: $error-margin-top;
+        color: var(--color-error);
+        font-size: calc(var(--input-font-size) / 1.5);
+        padding: 0 var(--input-padding-x);
+
+        > ul,
+        li {
+            display: block;
+            line-height: 100%;
+            overflow: hidden;
+            margin-top: 0;
+            margin-bottom: 0.25rem;
+            padding: 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.error-anim {
+    animation-name: shake;
+    animation-duration: 0.5s;
+}

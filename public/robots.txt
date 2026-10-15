@@ -1,0 +1,19 @@
+# robots.txt — PRODUZIONE
+# Consenti il crawling completo, non bloccare JS/CSS (servono per il rendering).
+
+User-agent: *
+Allow: /
+
+# Evita aree riservate / duplicati / pagine tecniche (adatta alle tue rotte)
+Disallow: /policies
+Disallow: /errors
+Disallow: /me/
+Disallow: /api/
+
+# Evita parametri di tracking tipici (non tutti i bot li rispettano, ma aiuta)
+Disallow: /*?*utm_* 
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+
+# Sitemap (metti quella reale; puoi avere più voci, es. sitemap-index)
+Sitemap: https://amabeefrestaurant.it/sitemap.xml

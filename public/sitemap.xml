@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://amabeefrestaurant.it</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://amabeefrestaurant.it/offerte</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Dichiarare qui SOLO pagine con contenuto reale.
+       Le viste rimaste vuote (/chi-siamo, /galleria-immagini, /news,
+       /contatti, /domande-frequenti) sono state rimosse dal router il
+       2026-08-05 e rispondono 410 via nginx: non vanno rimesse qui
+       finche' non avranno contenuto. -->
+</urlset>

@@ -1,0 +1,374 @@
+@import './conf.scss';
+@import './functions.scss';
+@import './mixins.scss';
+
+@import './libs/semiFixed.scss';
+@import './mq.scss';
+
+@import './partials/_form';
+@import './partials/_flex';
+@import './partials/_typo';
+
+// @import './libs/scroll.scss';
+
+
+/* 
+---------------------------------------------
+    root
+--------------------------------------------- */
+:root {
+    --el-color-primary: #{map-get($colors, 'primary')};
+
+    @each $key, $value in $variables {
+        --#{$key}: #{$value};
+    }
+
+    @each $key, $value in $colors {
+        --color-#{$key}: #{$value};
+    }
+
+    @each $key, $value in $mq-breakpoints {
+        @include mq($key) {
+            --break-value: #{$key}-#{$value};
+            --break: #{$key};
+            --typo-size-ui: #{map-get($typo-ui, $key)};
+            --multiplier-ui: #{map-get($multiplers-ui, $key)};
+        }
+    }
+
+    --static-break: #{$mq-static-breakpoint};
+    --static-break-value: #{map-get($mq-breakpoints, $mq-static-breakpoint)};
+
+    @each $key, $value in $layers {
+        --layer-#{$key}: #{$value};
+    }
+
+    @each $key, $value in $components {
+        @each $key2, $value2 in map-get($components, $key) {
+            --#{$key}-#{$key2}: #{$value2};
+        }
+    }
+
+    @include mq($until: $mq-static-breakpoint) {
+        --size-layout: #{map-get($variables, 'size-layout-mobile')};
+        --grid-gutter: #{map-get($variables, 'grid-gutter-mobile')};
+        --section-padding-y: #{map-get($variables, 'section-padding-y-mobile')};
+    }
+
+    /* Fallback JS var: --vh = 1% dell’altezza visibile */
+    --vh: 1vh; /* verrà aggiornato via JS sotto */
+}
+
+/* ---------------------------------------------
+    base
+--------------------------------------------- */
+* {
+    // -ms-overflow-style: none;  /* IE and Edge */
+    // scrollbar-width: none;  /* Firefox */
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        border-radius: 18px;
+        background-color: var(--color-mute);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 18px;
+        // -webkit-border-radius: 4px;
+        // -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+    }
+
+    ::-webkit-scrollbar-corner {
+        // background: #000;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--typo-size-ui);
+    height: 100%;
+}
+
+// html.lenis { height: auto; }
+// html.lenis.lenis-smooth { scroll-behavior: auto !important; }
+// html.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    height: 100%;
+
+    font-family: var(--typo-family-ui);
+    font-weight: var(--typo-weight-ui);
+    line-height: var(--typo-line-height-ui);
+    letter-spacing: var(--typo-letter-spacing-ui);
+
+    color: var(--color-typo);
+    background-color: var(--color-background) !important;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: auto;
+    cursor: default;
+    // scrollbar-gutter: stable;
+
+    overflow-x: hidden;
+
+    &.app-loading {
+        cursor: progress !important;
+    }
+
+    &.lock-scroll {
+        overflow: hidden;
+    }
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+li {
+    &:last-child {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+}
+
+img,
+video {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+  display: inline-block;
+  position: relative;
+  color: currentColor;
+  font-weight: var(--typo-weight-action);
+  letter-spacing: normal;
+  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+    background-color: var(--color-secondary);
+  }
+
+  &.link-actived {
+    color: var(--color-secondary);
+  }
+
+  /* Quando è attivo: linea visibile */
+  &.link-actived::before {
+    transform: scaleX(100%);
+  }
+
+  /* Al passaggio del mouse: linea scompare */
+  &.link-actived:hover::before {
+    transform: scaleX(0);
+    transform-origin: bottom left; /* così la linea "ritorna indietro" */
+  }
+
+  &:hover {
+    color: var(--color-secondary);
+    text-decoration: none;
+
+    &:not(.link-actived)::before {
+      transform: scaleX(100%);
+      transform-origin: bottom left; /* così la linea "ritorna indietro" */
+    }
+  }
+
+  &.disabled,
+  &.bxs-disabled,
+  &:disabled {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+  }
+}
+
+
+button {
+    display: inline-block;
+    position: relative;
+    color: currentColor;
+    font-weight: var(--typo-weight-action);
+    letter-spacing: normal;
+    pointer-events: auto;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+//
+$min_width: 320px;
+$max_width: 1024px;
+
+@each $key, $value in $typo-sizes-display {
+    h#{$key} {
+        @include fluid-type(
+            $min_width,
+            $max_width,
+            map-get($value, 'min'),
+            map-get($value, 'max')
+        );
+
+        // font-size: calc($value * var(--multiplier-ui, 1));
+        font-family: var(--typo-family-display);
+        font-weight: var(--typo-weight-display);
+        line-height: var(--typo-line-height-display);
+        letter-spacing: var(--typo-letter-spacing);
+        // color: var(--color-heading);
+        text-transform: var(--typo-text-tranform-display);
+        margin-bottom: calc(var(--typo-display-margin-botttom) * var(--multiplier-ui, 1));
+    }
+
+    .h#{$key} {
+        // font-family: var(--typo-family-display);
+        // line-height: var(--typo-line-height-display);
+        // margin-bottom: calc(var(--typo-display-margin-botttom) * var(--multiplier-ui, 1));
+
+        @include fluid-type(
+            $min_width,
+            $max_width,
+            map-get($value, 'min'),
+            map-get($value, 'max')
+        );
+        // font-size: calc($value * var(--multiplier-ui, 1));
+    }
+}
+
+p {
+    // color: var(--color-paragraph);
+    // margin-top: calc(var(--typo-ui-margin-top) * var(--multiplier-ui, 1));
+    margin-bottom: calc(var(--typo-ui-margin-bottom) * var(--multiplier-ui, 1));
+}
+
+b {
+    font-weight: var(--typo-weight-display);
+}
+
+.small,
+small {
+    font-size: 0.8rem;
+    // line-height: 120%;
+}
+
+br {
+    @include mq($until: $mq-static-breakpoint) {
+        display: none;
+    }
+}
+
+section {
+    position: relative;
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+}
+
+/* ---------------------------------------------
+    app
+--------------------------------------------- */
+
+.app-loading {
+    cursor: progress !important;
+}
+
+.app-noevt {
+    pointer-events: none !important;
+}
+
+#app {
+    position: relative;
+    height: 100%;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.app--wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &.app-is-funnel {
+        .app--main {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.app--main {
+    min-height: 100%;
+    isolation: isolate;              /* protegge effetti/sticky dal resto */
+    contain: paint;                  /* micro-ottimizzazione per layout complessi */
+}
+
+.app--footer {
+    margin-top: auto;
+}
+
+.app--page {
+    position: relative;
+    min-height: 100svh;              /* unità sicure mobile */
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Evita “scrollbar jank” su layout complessi con grandi container */
+[data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+// utils
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+.sr-only-mobile {
+  @include mq($until: $mq-static-breakpoint) {
+    position: absolute; width: 1px; height: 1px; padding: 0;
+    margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+}
+
+/* ---------------------------------------------
+    partials theme
+--------------------------------------------- */
+@import './partials/index.scss';
+/* ---------------------------------------------
+    child theme
+--------------------------------------------- */
+@import './_child_theme.scss';

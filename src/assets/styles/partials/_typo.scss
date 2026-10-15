@@ -1,0 +1,136 @@
+/* 
+---------------------------------------------
+    typo
+--------------------------------------------- */
+
+.text-letter-spacing-normal {
+    letter-spacing: normal;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-center-sb {
+    @include mq($mq-static-breakpoint) {
+        text-align: center;
+    }
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-right-sb {
+    @include mq($mq-static-breakpoint) {
+        text-align: right;
+    }
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-left-sb {
+    @include mq($mq-static-breakpoint) {
+        text-align: left;
+    }
+}
+
+.text-justify {
+    text-align: justify;
+    hyphens: auto;
+}
+
+.text-no-wrap {
+    white-space: nowrap;
+}
+
+.text-none-transform {
+    text-transform: none;
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-line-through {
+    text-decoration: line-through;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.text-no-decoration {
+    text-decoration: none;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-no-wrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-truncate {
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+
+    >* {
+        -webkit-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+}
+
+.text-300 {
+    font-weight: 300;
+}
+
+.text-400 {
+    font-weight: 400;
+}
+
+.text-500 {
+    font-weight: 500;
+}
+
+.text-600 {
+    font-weight: 600;
+}
+
+.text-700 {
+    font-weight: 700;
+}
+
+.text-800 {
+    font-weight: 800;
+}
+
+.text-900 {
+    font-weight: 900;
+}
+
+.text-ui {
+    font-family: var(--typo-family-ui);
+    line-height: var(--typo-line-height-ui);
+}
+
+.text-display {
+    font-family: var(--typo-family-display);
+}

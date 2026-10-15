@@ -1,0 +1,10 @@
+@function map-get-deep($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}

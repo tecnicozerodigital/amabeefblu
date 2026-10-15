@@ -1,0 +1,209 @@
+/* 
+---------------------------------------------
+    sizing
+--------------------------------------------- */
+
+.pa-ui {
+    padding: var(--size-ui) !important;
+}
+
+.pa-layout {
+    padding: var(--size-layout) !important;
+}
+
+.px-layout {
+    padding-left: var(--size-layout) !important;
+    padding-right: var(--size-layout) !important;
+}
+
+.py-ui {
+    padding-top: var(--size-ui) !important;
+    padding-bottom: var(--size-ui) !important;
+}
+
+.py-layout {
+    padding-top: var(--size-layout) !important;
+    padding-bottom: var(--size-layout) !important;
+}
+
+.px-ui {
+    padding-left: var(--size-ui) !important;
+    padding-right: var(--size-ui) !important;
+}
+
+.pl-ui {
+    padding-left: var(--size-ui) !important;
+}
+
+.pr-ui {
+    padding-right: var(--size-ui) !important;
+}
+
+.pt-ui {
+    padding-top: var(--size-ui) !important;
+}
+
+.pb-ui {
+    padding-bottom: var(--size-ui) !important;
+}
+
+.pt-layout {
+    padding-top: var(--size-layout) !important;
+}
+
+.my-ui {
+    margin-top: var(--size-ui) !important;
+    margin-bottom: var(--size-ui) !important;
+}
+
+.mb-ui {
+  margin-bottom: var(--size-ui) !important;
+}
+
+.ml-ui {
+  margin-left: var(--size-ui) !important;
+}
+
+.mt-ui {
+  margin-top: var(--size-ui) !important;
+}
+
+.mr-ui {
+  margin-right: var(--size-ui) !important;
+}
+
+.mr-0-last,
+.mr-last-0 {
+    &:last-child {
+        margin-right: 0;
+    }
+}  
+
+.mx-ui {
+    margin-left: var(--size-ui) !important;
+    margin-right: var(--size-ui) !important;
+}
+
+.mx-auto {
+    margin: 0 auto;
+}
+
+.mb-layout {
+    margin-bottom: var(--size-layout) !important;
+}   
+
+//
+
+.pa-grid {
+    padding: var(--grid-gutter) !important;
+}
+
+.py-grid {
+    padding-top: var(--grid-gutter) !important;
+    padding-bottom: var(--grid-gutter) !important;
+}
+
+.px-grid {
+    padding-left: var(--grid-gutter) !important;
+    padding-right: var(--grid-gutter) !important;
+}
+
+.pl-grid {
+    padding-left: var(--grid-gutter) !important;
+}
+
+.pt-grid {
+    padding-top: var(--grid-gutter) !important;
+}
+
+.my-grid {
+    margin-top: var(--grid-gutter) !important;
+    margin-bottom: var(--grid-gutter) !important;
+}
+
+.mb-grid {
+  margin-bottom: var(--grid-gutter) !important;
+}
+
+.ml-grid {
+  margin-left: var(--grid-gutter) !important;
+}
+
+.mt-grid {
+  margin-top: var(--grid-gutter) !important;
+}
+
+.mr-grid {
+  margin-right: var(--grid-gutter) !important;
+}
+
+//
+
+$n: 0;
+$v: 0;
+@while $n <= 24 {
+    $vV: #{$v}rem;
+
+    .pa-#{$n} {
+        padding: $vV !important;
+    }
+
+    .pt-#{$n} {
+        padding-top: $vV !important;
+    }
+
+    .pr-#{$n} {
+        padding-right: $vV !important;
+    }
+
+    .pb-#{$n} {
+        padding-bottom: $vV !important;
+    }
+
+    .pl-#{$n} {
+        padding-left: $vV !important;
+    }
+
+    .py-#{$n} {
+        padding-top: $vV !important;
+        padding-bottom: $vV !important;
+    }
+
+    .px-#{$n} {
+        padding-right: $vV !important;
+        padding-left: $vV !important;
+    }
+
+    .ma-#{$n} {
+        margin: $vV !important;
+    }
+
+    .mt-#{$n} {
+        margin-top: $vV !important;
+    }
+
+    .mr-#{$n} {
+        margin-right: $vV !important;
+    }
+
+    .mb-#{$n} {
+        margin-bottom: $vV !important;
+    }
+
+    .ml-#{$n} {
+        margin-left: $vV !important;
+    }
+
+    .my-#{$n} {
+        margin-top: $vV !important;
+        margin-bottom: $vV !important;
+    }
+
+    .mx-#{$n} {
+        margin-right: $vV !important;
+        margin-left: $vV !important;
+    }
+
+    $n: $n + 1;
+    $v: $v + 0.15
+}

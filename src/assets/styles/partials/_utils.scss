@@ -1,0 +1,275 @@
+/* ---------------------------------------------
+    utils
+--------------------------------------------- */
+.bxs-hidden {
+    @include visually-hidden;
+}
+
+.bxs-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.bxs-pointer {
+    cursor: pointer;
+}
+
+.bxs-disabled {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}
+
+.bxs-blur {
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+}
+
+.bxs-scrollable {
+    flex: 1;
+    height: 100%;
+    padding-bottom: var(--size-ui);
+    overflow-x: hidden;
+    overflow: auto; /* this will add scrollbars automatically if your div is larger than the specified dimensions */
+}
+
+.bxs-elevation,
+.bxs-material {
+    // box-shadow: 0px 1px 4px -1px rgba(#000, 0.4) !important;
+    box-shadow: 0px 2px 8px 0px rgba(#000, 0.2) !important;
+}
+
+.bxs-rounded {
+    border-radius: 16px !important;
+}
+
+.bxs-rounded-top {
+    border-top-right-radius: calc(var(--radius) * 4) !important;
+    border-top-left-radius: calc(var(--radius) * 4) !important;
+}
+
+.bxs-rounded-bottom {
+    border-bottom-right-radius: calc(var(--radius) * 4) !important;
+    border-bottom-left-radius: calc(var(--radius) * 4) !important;
+}
+
+.bxs-tile {
+    border-radius: 0;
+}
+
+.bxs-no-select {
+    user-select: none !important;
+}
+
+hr,
+.bxs-divider {
+    display: block;
+    flex: 1 1 0px;
+    max-width: 100%;
+    height: 0;
+    max-height: 0;
+    border: solid;
+    border-width: thin 0 0;
+    transition: inherit;
+    border-color: var(--divider-color) !important;
+    overflow: visible;
+
+    &.bxs-divider-vertical {
+        align-self: stretch;
+        border: solid;
+        border-width: 0 thin 0 0;
+        display: inline-flex;
+        height: inherit;
+        min-height: 100%;
+        max-height: 100%;
+        max-width: 0;
+        width: 0;
+        vertical-align: text-bottom;
+        margin: 0 -1px;
+    }
+}
+
+.bxs-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+    z-index: 1;
+    transform: scale(1.1);
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &::before {
+        top: 0;
+        background-image: linear-gradient(to bottom, rgba(#000, 0.8), rgba(#fff, 0));
+    }
+
+    &::after {
+        bottom: 0;
+        background-image: linear-gradient(to top, rgba(#000, 0.4), rgba(#fff, 0));
+    }
+}
+
+.bxs-truncate {
+    -webkit-hyphens: none;
+        -ms-hyphens: none;
+    hyphens: none;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+
+    > * {
+        -webkit-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+}
+
+.bxs-rich {
+    article,
+    section {
+        margin-bottom: 5rem;
+    }
+
+    img,
+    video,
+    figure,
+    iframe {
+        display: block
+    }
+
+    img,
+    video,
+    iframe,
+    figure,
+    object,
+    blockquote,
+    hr,
+    p,
+    ul {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    ol,
+    ul {
+        padding-left: var(--size-ui);
+    }
+
+    ul,
+    li {
+        list-style: inherit;
+        padding-left: 1rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+        padding-left: 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // @each $key, $value in $typo-sizes-display {
+    //     h#{$key} {
+    //         font-size: calc($value / 1.5);
+    //     }
+    // }
+}
+
+.full-height {
+    height: 100%;
+}
+
+.list {
+    .element-list {
+        border-bottom: 1px solid var(--divider-color)
+    }
+
+    .element-list:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Sezione full-screen stabile (consigliato per hero) */
+.fullscreen {
+  min-height: calc(var(--vh) * 100); /* fallback */
+}
+@supports (height: 100svh) {
+  .fullscreen { min-height: 100svh; } /* niente saltini */
+}
+
+/* Overlay che deve seguire il viewport visibile (tastiera ecc.) */
+.fullscreen-dynamic {
+  height: calc(var(--vh) * 100); /* fallback */
+}
+@supports (height: 100dvh) {
+  .fullscreen-dynamic { height: 100dvh; } /* segue i cambi */
+}
+
+/* ========= GPU BOOST (utility) ========= */
+
+/* Base: promuove a layer compositing senza cambiare layout */
+.gpu-boost {
+  /* forza il compositing anche su WebKit */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+
+  /* evita repaint del retro nei 3D/compositing */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  /* limita l'area di paint all'elemento (non rompe il layout) */
+  contain: paint;
+}
+
+/* Attiva gli hint solo quando serve (prima/durante l’animazione) */
+.gpu-boost--anim-transform { will-change: transform; }
+.gpu-boost--anim-opacity  { will-change: opacity; }
+
+/* Se animi clip-path: usa la variante dedicata (Safari-friendly) */
+.gpu-boost--anim-clip {
+  will-change: clip-path;
+  /* opzionale: stato iniziale comune per wipe/clip, se ti serve
+     -webkit-clip-path: inset(0% 100% 0% 0%);
+             clip-path: inset(0% 100% 0% 0%); */
+}
+
+/* Se animi filter (costoso): attiva solo per la durata dell’animazione */
+.gpu-boost--anim-filter { will-change: filter; }
+
+/* Utilità opzionale per immagini/video: evita shimmer durante trasformazioni */
+.gpu-media {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  image-rendering: auto;
+}

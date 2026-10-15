@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!--  -->
+    <title>AmaBeef – Steakhouse & Gintoneria a Cadorago (Como) | Carni Pregiate & Gin</title>
+    <meta name="description" content="Scopri AmaBeef a Cadorago, la steakhouse a pochi minuti da Como. Carni selezionate dalla Famiglia Amabile e oltre 50 etichette di gin. Prenota ora.">
+    <!--  -->
+    <link rel="preload" as="image" href="/img/cibo-persone/cibo-persone-carne-cotta-1.jpeg" imagesizes="50vw">
+    <!-- <link rel="preconnect" href="https://cdn.tuodominio.com" crossorigin> -->
+    <!--  -->
+    <meta name="robots" content="index,follow">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0LD6J8JQR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        // gtag('consent', 'default', {
+        //     'analytics_storage': 'denied'
+        // });
+        // CONSENT MODE v2 — consenso subito "granted"
+        gtag('consent', 'default', {
+            ad_storage: 'granted',
+            analytics_storage: 'granted',
+            ad_user_data: 'granted',        // v2
+            ad_personalization: 'granted',  // v2
+            functionality_storage: 'granted',
+            security_storage: 'granted'
+        });
+        gtag('config', 'G-D0LD6J8JQR', {
+            page_path: window.location.pathname
+        });
+    </script>
+  </head>
+  <body>
+    <noscript data-prerender="skip">
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

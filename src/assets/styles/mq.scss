@@ -1,0 +1,73 @@
+$mq-breakpoints: (
+    'ms': 360px,
+    'mm': 480px,
+    'ml': 768px,
+    'ds': 1024px,
+    'dm': 1280px,
+    'dl': 1440px
+);
+
+// $mq-breakpoints: (
+//   xs: 360px,   // telefoni compatti (min utile 2025)
+//   sm: 480px,   // telefoni medi / landscape piccolo
+//   md: 640px,   // telefoni grandi / phablet
+//   lg: 768px,   // tablet portrait / small landscape
+//   xl: 1024px,  // tablet landscape / small laptop
+//   xxl: 1280px, // laptop standard
+//   xxxl: 1440px,// laptop/grandi viewport
+//   uhd: 1920px  // desktop fullHD e oltre
+// );
+
+$is-landscape: '(orientation: landscape)';
+$is-portrait: '(orientation: portrait)';
+$is-iphone-x: '(device-height: 812px) and (-webkit-device-pixel-ratio : 3)';
+$is-ipad-pro: '(max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5)';
+$is-touch-device: '(pointer: coarse) and (hover: none)';
+$is-ie-11: '(-ms-high-contrast: active) and (-ms-high-contrast: none)';
+$is-height-small: '(max-height: 767px)';
+
+$mq-static-breakpoint: ds !default;
+
+@import '~sass-mq/mq';
+
+
+// from (a partire da) >= break
+// until (fino a) <= break
+
+/*
+Ecco le **risoluzioni più comuni (Worldwide, luglio 2025)** secondo StatCounter.
+
+**Tutti i device (desktop + mobile)**
+*(quota sul traffico web globale)* ([StatCounter Global Stats][1])
+
+| Risoluzione | Quota |
+| ----------- | ----: |
+| 1920×1080   | 8.08% |
+| 360×800     | 6.69% |
+| 800×600     | 5.83% |
+| 390×844     | 3.80% |
+
+**Mobile**
+*(solo smartphone, worldwide)* ([StatCounter Global Stats][2])
+
+| Risoluzione |  Quota |
+| ----------- | -----: |
+| 360×800     | 10.27% |
+| 390×844     |  6.26% |
+| 393×873     |  5.23% |
+| 375×812     |  4.31% |
+| 412×915     |  3.99% |
+
+**Desktop**
+*(solo desktop, worldwide)* ([StatCounter Global Stats][3])
+
+| Risoluzione |  Quota |
+| ----------- | -----: |
+| 1920×1080   | 20.28% |
+| 800×600     | 14.44% |
+| 1536×864    |  8.91% |
+| 1366×768    |  8.07% |
+| 1280×720    |  4.65% |
+
+Se vuoi, posso rifare la tabella **per Europa o Italia** (o per un mese specifico) e trasformarla in una **checklist di breakpoint** pronta da copiare.
+*/

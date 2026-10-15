@@ -1,0 +1,21 @@
+// .semifixed {
+//     & --anchor {
+//         position: relative;
+//     }
+
+//     & --fixed {
+//         position: fixed;
+//     }
+// }
+
+.semifixed--anchor {
+    position: relative !important;
+}
+
+.semifixed--fixed {
+    position: fixed !important;
+}
+
+.semifixed--bottom {
+    position: absolute !important;
+}

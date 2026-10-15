@@ -1,0 +1,20 @@
+{
+    "printWidth": "off",
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "quoteProps": "consistent",
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "overrides": [
+        {
+            "files": "**/*.html",
+            "options": {
+                "printWidth": "off"
+            }
+        }
+    ]
+}
